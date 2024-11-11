@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Finder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Recipe Finder</h1>
+        
+        <!-- Search by Ingredient -->
+        <div class="search-section">
+            <h2>Search Recipes by Ingredient</h2>
+            <input type="text" id="ingredientInput" placeholder="Enter an ingredient...">
+            <button onclick="searchByIngredient()">Search</button>
+            <div id="ingredientResults" class="results"></div>
+        </div>
+
+        <!-- Search by Recipe Name -->
+        <div class="search-section">
+            <h2>Search Recipe by Name</h2>
+            <input type="text" id="nameInput" placeholder="Enter a recipe name...">
+            <button onclick="searchByName()">Search</button>
+            <div id="nameResult" class="results"></div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
