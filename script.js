@@ -1,4 +1,7 @@
-const apiBaseURL = 'https://no-waste-api.onrender.com'; // Replace with your Render.com API URL
+// Render.com API URL
+const apiBaseURL = 'https://no-waste-api.onrender.com'; 
+// localhost
+// const apiBaseURL = 'http://localhost:5000'; 
 
 // Search recipes by ingredient
 async function searchByIngredient() {
@@ -14,7 +17,7 @@ async function searchByIngredient() {
     try {
         const response = await fetch(`${apiBaseURL}/recipes?ingredient=${ingredient}`);
         const data = await response.json();
-        
+
         if (response.ok) {
             if (data.length === 0) {
                 resultsContainer.innerHTML = '<div>No recipes found.</div>';
@@ -50,10 +53,17 @@ async function searchByName() {
         const data = await response.json();
 
         if (response.ok) {
-            resultContainer.innerHTML = `
-                <div class="result-item">
-                    <strong>${data.name}</strong>: ${data.ingredients.join(', ')}
-                </div>`;
+            if (data.length === 0) {
+                resultContainer.innerHTML = '<div>No recipes found.</div>';
+            } else {
+                resultContainer.innerHTML = '';
+                data.forEach(recipe => {
+                    const recipeItem = document.createElement('div');
+                    recipeItem.className = 'result-item';
+                    recipeItem.innerHTML = `<strong>${recipe.name}</strong>: ${recipe.ingredients.join(', ')}`;
+                    resultContainer.appendChild(recipeItem);
+                });
+            }
         } else {
             resultContainer.innerHTML = `<div class="error">${data.error}</div>`;
         }
